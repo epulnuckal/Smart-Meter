@@ -1,0 +1,16 @@
+{
+  "short_name": "SmartMeter",
+  "name": "Smart Meter IoT Monitoring System",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3159/3159483.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/index.html",
+  "background_color": "#f4f7f6",
+  "theme_color": "#2ecc71",
+  "display": "standalone",
+  "orientation": "portrait"
+}

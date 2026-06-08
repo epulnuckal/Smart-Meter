@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Meter IoT - DiPX 2026</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2ecc71">
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; margin: 0; padding: 20px; text-align: center; }
+        h1 { color: #333; margin-bottom: 5px; }
+        p.subtitle { color: #666; margin-top: 0; margin-bottom: 30px; }
+        
+        /* Kotak Set Tarif Manual */
+        .tariff-box { background: white; max-width: 400px; margin: 0 auto 30px auto; padding: 15px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .tariff-box input { padding: 8px; width: 100px; font-size: 1rem; text-align: center; border: 1px solid #ccc; border-radius: 4px; }
+        .tariff-box button { padding: 8px 15px; font-size: 1rem; background-color: #3498db; color: white; border: none; border-radius: 4px; cursor: pointer; margin-left: 10px; }
+        .tariff-box button:hover { background-color: #2980b9; }
+
+        .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; max-width: 1000px; margin: 0 auto; }
+        .card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.05); width: 180px; text-align: center; border-top: 5px solid #2ecc71; }
+        .card.voltage { border-top-color: #3498db; }
+        .card.current { border-top-color: #9b59b6; }
+        .card.power { border-top-color: #e67e22; }
+        .card.energy { border-top-color: #1abc9c; }
+        .card.cost { border-top-color: #e74c3c; }
+        .value { font-size: 1.8rem; font-weight: bold; color: #2c3e50; margin: 15px 0 5px 0; }
+        .unit { font-size: 0.85rem; color: #7f8c8d; text-transform: uppercase; }
+        .label { font-size: 1.05rem; font-weight: 600; color: #34495e; }
+        
+        .status-container { margin-top: 30px; font-size: 0.9rem; color: #95a5a6; }
+        .status-dot { width: 10px; height: 10px; background-color: #e74c3c; border-radius: 50%; display: inline-block; margin-right: 5px; }
+        .status-dot.online { background-color: #2ecc71; }
+    </style>
+</head>
+<body>
+
+    <h1>METER PINTAR IoT A469</h1>
+    <p class="subtitle">Panel Pemantauan Tenaga Elektrik Masa-Nyata (DiPX 2026)</p>
+
+    <div class="tariff-box">
+        <label for="input-tariff"><b>Kadar Tarif (RM/kWh):</b> </label>
+        <input type="number" id="input-tariff" step="0.001" value="0.218">
+        <button id="btn-tariff">Kemas Kini</button>
+    </div>
+
+    <div class="container">
+        <div class="card voltage"><div class="label">Voltan</div><div class="value" id="val-voltage">0.0</div><div class="unit">Volt (V)</div></div>
+        <div class="card current"><div class="label">Arus</div><div class="value" id="val-current">0.00</div><div class="unit">Ampere (A)</div></div>
+        <div class="card power"><div class="label">Kuasa</div><div class="value" id="val-power">0.0</div><div class="unit">Watt (W)</div></div>
+        <div class="card energy"><div class="label">Jumlah Tenaga</div><div class="value" id="val-energy">0.000</div><div class="unit">kWh</div></div>
+        <div class="card cost"><div class="label">Anggaran Kos</div><div class="value" id="val-cost">0.00</div><div class="unit">RM</div></div>
+    </div>
+
+    <div class="status-container">
+        <span class="status-dot" id="status-dot"></span> Status: <span id="status-text">Menghubung...</span>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
